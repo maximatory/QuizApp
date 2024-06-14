@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:slnt,wght@-10..0,100..900&display=swap');
+
+:root {
+    /* font-size для заголовков */
+    --fs-h1: 3.2rem;
+  
+    /* font-size для подзаголовков */
+    --fs-sh1: 2rem;
+  
+    /* font-size для параграфов */
+    --fs-p1: 1.6rem;
+  
+    /* font-size для лейблов */
+    --fs-l1: 1.4rem;
+  
+    /* colors */
+    --clr-primary: #000000;
+    --clr-secondary: #B92A35;
+    --clr-gray: #E1E1E1;
+    --clr-light: #ffffff;
+
+    --ff-primary: 'Inter', sans-serif;
+  }
+  
