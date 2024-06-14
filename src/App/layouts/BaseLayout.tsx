@@ -1,12 +1,12 @@
-import { Outlet } from "react-router-dom"
+import { Outlet } from 'react-router-dom'
 
 const BaseLayout = () => {
-return(
+  return (
     <>
-        <h1>Base layout</h1>
-        <Outlet/>
+      <h1>Base layout</h1>
+      <Outlet />
     </>
-)
+  )
 }
 
 export default BaseLayout
