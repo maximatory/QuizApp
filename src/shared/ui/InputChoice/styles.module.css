@@ -1,0 +1,29 @@
+.checkboxContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.checkboxContainer input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.checkboxLabel {
+  font-size: var(--fs-p1);
+}
+
+.customCheckbox {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 1px solid var(--clr-gray);
+  transition: all 0.2s ease-in-out;
+}
+
+input:checked ~ .customCheckbox {
+  background-color: var(--clr-secondary);
+}
