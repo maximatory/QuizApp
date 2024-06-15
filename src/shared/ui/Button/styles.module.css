@@ -1,0 +1,18 @@
+.button {
+  display: inline-block;
+  background-color: var(--clr-secondary);
+  border-radius: 4px;
+  color: var(--clr-light);
+  padding: 15px 25px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease-in-out; /* Исправлено здесь */
+}
+
+.button:hover {
+  opacity: 0.8;
+}
+
+.button:active {
+  background-color: var(--clr-primary);
+}
