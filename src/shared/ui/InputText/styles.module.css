@@ -1,0 +1,7 @@
+.textarea {
+  width: 50%;
+  padding: 10px;
+  font-size: var(--fs-l1);
+  resize: none;
+  border: 1px solid var(--clr-gray);
+}
