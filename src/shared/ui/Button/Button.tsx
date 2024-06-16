@@ -1,8 +1,9 @@
+import React from 'react'
 import styles from './styles.module.css'
 
-export interface ButtonProps {
+export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   label: string
-  onButtonClick: () => void
+  onButtonClick: (event: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 const Button = ({ label, onButtonClick }: ButtonProps) => {
