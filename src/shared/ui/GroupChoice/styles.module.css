@@ -3,3 +3,7 @@
   flex-direction: column;
   gap: 10px;
 }
+
+.description {
+  font-size: var(--fs-l1);
+}
