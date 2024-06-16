@@ -1,0 +1,14 @@
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.formContainer button {
+  width: 200px;
+}
+
+.questionText {
+  font-size: var(--fs-sh1);
+}
