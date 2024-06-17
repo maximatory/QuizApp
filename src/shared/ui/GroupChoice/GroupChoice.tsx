@@ -4,7 +4,7 @@ import styles from './styles.module.css'
 export interface GroupChoiceProps {
   type: string
   options?: string[]
-  handleInputChange: () => void
+  handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const GroupChoice = ({ type, options, handleInputChange }: GroupChoiceProps) => {

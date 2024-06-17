@@ -3,9 +3,10 @@ import styles from './styles.module.css'
 export interface InputTextProps {
   type: string
   handleTextChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void
+  id: string
 }
 
-const InputText = ({ type, handleTextChange }: InputTextProps) => {
+const InputText = ({ type, handleTextChange, id }: InputTextProps) => {
   const isSmall = type === 'ShortText'
   const placeholderValue = isSmall ? 'Ответьте коротко' : 'Дайте развернутый ответ'
   return (
@@ -13,7 +14,8 @@ const InputText = ({ type, handleTextChange }: InputTextProps) => {
       rows={isSmall ? 3 : 10}
       placeholder={placeholderValue}
       onChange={handleTextChange}
-      className={styles.textarea}></textarea>
+      className={styles.textarea}
+      name={id}></textarea>
   )
 }
 
