@@ -6,7 +6,7 @@ export interface AnswersState {
 }
 
 const initialState: AnswersState = {
-  answers: []
+  answers: JSON.parse(localStorage.getItem('answers') || '[]')
 }
 
 const answersSlice = createSlice({
@@ -15,9 +15,11 @@ const answersSlice = createSlice({
   reducers: {
     addAnswer(state, action: PayloadAction<IAnswer>) {
       state.answers.push(action.payload)
+      localStorage.setItem('answers', JSON.stringify(state.answers))
     },
     resetAnswers(state) {
       state.answers = []
+      localStorage.setItem('answers', JSON.stringify(state.answers))
     }
   }
 })
