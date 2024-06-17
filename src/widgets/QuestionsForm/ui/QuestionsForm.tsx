@@ -9,10 +9,9 @@ import { useAppDispatch, useAppSelector } from '@/app/appStore'
 import { IQuestion } from '@/entities/questions/model/interfaces'
 import { addAnswer } from '@/entities/answers/model/slice'
 import { initializeQuestionsData } from '@/entities/questions/model/slice'
-import useLocalStorage from '@/shared/lib/hooks/useLocalStorage'
 
 const QuestionsForm = () => {
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useLocalStorage('currentQuestionIndex', 0)
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [answerValue, setAnswerValue] = useState<string[]>([])
   const dispatch = useAppDispatch()
 
@@ -59,7 +58,7 @@ const QuestionsForm = () => {
 
   const handleNextQuestion = () => {
     if (currentQuestion) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1)
+      setCurrentQuestionIndex((prev) => prev + 1)
       const currentAnswer = createAnswer(currentQuestion, answerValue)
       dispatch(addAnswer(currentAnswer))
       setAnswerValue([])
