@@ -3,7 +3,7 @@ import styles from './styles.module.css'
 
 export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   label: string
-  onButtonClick: (event: React.MouseEvent<HTMLButtonElement>) => void
+  onButtonClick: () => void
 }
 
 const Button = ({ label, onButtonClick }: ButtonProps) => {
