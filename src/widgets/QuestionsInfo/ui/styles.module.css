@@ -1,0 +1,10 @@
+.infoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 20px;
+}
+
+.title {
+  font-size: var(--fs-h1);
+}

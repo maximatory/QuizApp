@@ -1,14 +1,11 @@
 import { QuestionFactory } from '@/features/questions/QuestionFactory'
 import Button from '@/shared/ui/Button/Button'
-
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import styles from './styles.module.css'
-import { testData } from '@/shared/data/testData'
 import { ProgressBar } from '@/features/questions/ProgressBar'
 import { useAppDispatch, useAppSelector } from '@/app/appStore'
 import { IQuestion } from '@/entities/questions/model/interfaces'
 import { addAnswer } from '@/entities/answers/model/slice'
-import { initializeQuestionsData } from '@/entities/questions/model/slice'
 import useLocalStorage from '@/shared/lib/hooks/useLocalStorage'
 
 const QuestionsForm = () => {
@@ -16,12 +13,7 @@ const QuestionsForm = () => {
   const [answerValue, setAnswerValue] = useState<string[]>([])
   const dispatch = useAppDispatch()
 
-  useEffect(() => {
-    dispatch(initializeQuestionsData(testData))
-  }, [])
-
   const questionsData = useAppSelector((state) => state.questions.questionsData)
-
   const currentQuestion = questionsData?.questions[currentQuestionIndex]
 
   const onFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
