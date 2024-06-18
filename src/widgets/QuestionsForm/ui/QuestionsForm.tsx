@@ -1,5 +1,4 @@
 import { QuestionFactory } from '@/features/questions/QuestionFactory'
-import Button from '@/shared/ui/Button/Button'
 import { useEffect, useState } from 'react'
 import styles from './styles.module.css'
 import { ProgressBar } from '@/features/questions/ProgressBar'
@@ -8,10 +7,13 @@ import { IQuestion } from '@/entities/questions/model/interfaces'
 import { addAnswer } from '@/entities/answers/model/slice'
 import useLocalStorage from '@/shared/lib/hooks/useLocalStorage'
 import { useNavigate } from 'react-router-dom'
+import { validateAnswers } from '@/shared/lib/helpers/validateAnswers'
+import { FormControl } from '@/features/questions/FormControl'
 
 const QuestionsForm = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useLocalStorage('currentQuestionIndex', 0)
   const [answerValue, setAnswerValue] = useState<string[]>([])
+  const [errorMessage, setErrorMessage] = useState<string>('')
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
@@ -62,13 +64,14 @@ const QuestionsForm = () => {
   }
 
   const handleNextQuestion = () => {
-    if (currentQuestion) {
+    if (currentQuestion && validateAnswers(currentQuestion, answerValue)) {
       setCurrentQuestionIndex(currentQuestionIndex + 1)
       const currentAnswer = createAnswer(currentQuestion, answerValue)
       dispatch(addAnswer(currentAnswer))
       setAnswerValue([])
+      setErrorMessage('')
     } else {
-      console.error('Current question is undefined')
+      setErrorMessage('Дайте корректный ответ')
     }
   }
 
@@ -85,7 +88,7 @@ const QuestionsForm = () => {
             question={questionsData.questions[currentQuestionIndex]}
             handleChange={handleAnswerChange}
           />
-          <Button label="Отправить" onButtonClick={handleNextQuestion} />
+          <FormControl errorMessage={errorMessage} onButtonClick={handleNextQuestion} />
         </>
       ) : (
         <div>Loading...</div>
