@@ -5,9 +5,10 @@ import formatTimeValue from '@/shared/lib/helpers/formatTimeValue'
 
 interface TimerControlProps {
   initialSeconds: number
+  onTimerEnd: () => void
 }
 
-const TimerControl = ({ initialSeconds }: TimerControlProps) => {
+const TimerControl = ({ initialSeconds, onTimerEnd }: TimerControlProps) => {
   const [startTime, setStartTime] = useLocalStorage('timerStartTime', Date.now())
   const [isActive, setIsActive] = useLocalStorage('timerIsActive', true)
   const [secondsLeft, setSecondsLeft] = useState(initialSeconds)
@@ -37,6 +38,7 @@ const TimerControl = ({ initialSeconds }: TimerControlProps) => {
           clearInterval(interval)
           setIsActive(false)
           alert('Время вышло!')
+          setTimeout(onTimerEnd, 0)
           return 0
         }
         return newSecondsLeft
