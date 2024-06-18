@@ -8,7 +8,7 @@ const FinallyPage = () => {
 
   useEffect(() => {
     window.localStorage.removeItem('timerStartTime')
-    window.localStorage.setItem('timerIsActive', JSON.stringify(false))
+    window.localStorage.removeItem('timerIsActive')
   }, [])
 
   const handleResetTest = () => {
