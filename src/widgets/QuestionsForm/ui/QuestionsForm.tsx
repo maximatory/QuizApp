@@ -1,17 +1,19 @@
 import { QuestionFactory } from '@/features/questions/QuestionFactory'
 import Button from '@/shared/ui/Button/Button'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './styles.module.css'
 import { ProgressBar } from '@/features/questions/ProgressBar'
 import { useAppDispatch, useAppSelector } from '@/app/appStore'
 import { IQuestion } from '@/entities/questions/model/interfaces'
 import { addAnswer } from '@/entities/answers/model/slice'
 import useLocalStorage from '@/shared/lib/hooks/useLocalStorage'
+import { useNavigate } from 'react-router-dom'
 
 const QuestionsForm = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useLocalStorage('currentQuestionIndex', 0)
   const [answerValue, setAnswerValue] = useState<string[]>([])
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
 
   const questionsData = useAppSelector((state) => state.questions.questionsData)
   const currentQuestion = questionsData?.questions[currentQuestionIndex]
@@ -19,6 +21,16 @@ const QuestionsForm = () => {
   const onFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
   }
+
+  useEffect(() => {
+    if (!questionsData) {
+      return
+    }
+    const questionsLength = questionsData.questions.length
+    if (currentQuestionIndex >= questionsLength) {
+      navigate('/fynally')
+    }
+  }, [currentQuestionIndex, questionsData])
 
   const handleAnswerChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const target = event.target
@@ -62,7 +74,7 @@ const QuestionsForm = () => {
 
   return (
     <form className={styles.formContainer} onSubmit={onFormSubmit}>
-      {questionsData ? (
+      {questionsData && currentQuestionIndex < questionsData.questions.length ? (
         <>
           <ProgressBar questions={questionsData.questions} currentQuestionIndex={currentQuestionIndex} />
           <span className={styles.questionText}>

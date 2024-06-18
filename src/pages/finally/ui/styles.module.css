@@ -1,0 +1,10 @@
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.pageContainer h1 {
+  text-align: center;
+}
