@@ -19,7 +19,7 @@ const answersSlice = createSlice({
     },
     resetAnswers(state) {
       state.answers = []
-      localStorage.setItem('answers', JSON.stringify(state.answers))
+      localStorage.removeItem('answers')
     }
   }
 })
