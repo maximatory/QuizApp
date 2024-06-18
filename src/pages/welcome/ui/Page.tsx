@@ -13,6 +13,8 @@ const WelcomePage = () => {
 
   useEffect(() => {
     window.localStorage.removeItem('currentQuestionIndex')
+    window.localStorage.removeItem('timerStartTime')
+    window.localStorage.removeItem('timerIsActive')
   }, [])
 
   useEffect(() => {
