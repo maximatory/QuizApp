@@ -13,3 +13,9 @@
   font-size: var(--fs-l1);
   color: var(--clr-secondary);
 }
+
+@media (max-width: 460px) {
+  .controlContainer {
+    flex-direction: column;
+  }
+}
