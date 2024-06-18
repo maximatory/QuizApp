@@ -1,7 +1,7 @@
 import { ITest } from '@/entities/questions/model/interfaces'
 
 export const testData: ITest = {
-  timerSeconds: 10,
+  timerSeconds: 60,
   questions: [
     {
       id: '1',

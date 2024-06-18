@@ -7,3 +7,9 @@
   max-width: 80%;
   width: 100%;
 }
+
+@media (max-width: 992px) {
+  .pageContainer {
+    max-width: 100%;
+  }
+}

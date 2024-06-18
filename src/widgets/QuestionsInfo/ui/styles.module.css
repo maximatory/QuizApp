@@ -8,3 +8,9 @@
 .title {
   font-size: var(--fs-h1);
 }
+
+@media (max-width: 460px) {
+  .infoContainer {
+    flex-direction: column;
+  }
+}
