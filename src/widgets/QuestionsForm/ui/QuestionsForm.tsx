@@ -1,5 +1,5 @@
 import { QuestionFactory } from '@/features/questions/QuestionFactory'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import styles from './styles.module.css'
 import { ProgressBar } from '@/features/questions/ProgressBar'
 import { useAppDispatch, useAppSelector } from '@/app/appStore'
@@ -32,9 +32,9 @@ const QuestionsForm = () => {
     if (currentQuestionIndex >= questionsLength) {
       navigate('/fynally')
     }
-  }, [currentQuestionIndex, questionsData])
+  }, [currentQuestionIndex, questionsData, navigate])
 
-  const handleAnswerChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleAnswerChange = useCallback((event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const target = event.target
     const { value, type } = target
 
@@ -51,7 +51,7 @@ const QuestionsForm = () => {
     } else if (type === 'textarea') {
       setAnswerValue([value])
     }
-  }
+  }, [])
 
   const createAnswer = (currentQuestion: IQuestion, answerValue: string[]) => {
     const { id, type, questionText } = currentQuestion
@@ -63,7 +63,7 @@ const QuestionsForm = () => {
     }
   }
 
-  const handleNextQuestion = () => {
+  const handleNextQuestion = useCallback(() => {
     if (currentQuestion && validateAnswers(currentQuestion, answerValue)) {
       setCurrentQuestionIndex(currentQuestionIndex + 1)
       const currentAnswer = createAnswer(currentQuestion, answerValue)
@@ -73,7 +73,7 @@ const QuestionsForm = () => {
     } else {
       setErrorMessage('Дайте корректный ответ')
     }
-  }
+  }, [currentQuestion, validateAnswers, answerValue, dispatch, currentQuestionIndex])
 
   return (
     <form className={styles.formContainer} onSubmit={onFormSubmit}>
