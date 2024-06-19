@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-function useLocalStorage(key: string, initialValue: any) {
+function useLocalStorage<T>(key, initialValue: T): [T, (value: T) => void] {
   const [storedValue, setStoredValue] = useState(() => {
     try {
       const item = window.localStorage.getItem(key)
@@ -11,7 +11,7 @@ function useLocalStorage(key: string, initialValue: any) {
     }
   })
 
-  const setValue = (value) => {
+  const setValue = (value: T) => {
     try {
       const valueToStore = value instanceof Function ? value(storedValue) : value
       setStoredValue(valueToStore)
